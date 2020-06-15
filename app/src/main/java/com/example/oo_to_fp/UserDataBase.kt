@@ -18,12 +18,33 @@ class UserDataBase {
         User( 13,  "Harold",  true),
         User( 14,  "Joyse",  false)
     )
+
+    var names = mutableListOf<String>()
+
+    fun storeActiveUserName() {
+        var actives = mutableListOf<User>()
+
+        for (user in users) {
+            if (user.active) {
+                actives.add(user)
+            }
+        }
+
+        actives.sortBy { user -> user.id }
+
+        names.clear()
+        for (user in actives) {
+            names.add(user.name)
+        }
+
+    }
 }
 
 data class User(val id: Int, val name: String, val active: Boolean)
 
 fun main(args: Array<String>){
 
-    val userDataBNase = UserDataBase()
-    println(userDataBNase.users)
+    val userDataBase = UserDataBase()
+    userDataBase.storeActiveUserName()
+    println(userDataBase.names)
 }

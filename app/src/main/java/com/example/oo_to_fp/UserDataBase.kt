@@ -21,7 +21,7 @@ class UserDataBase {
 
     fun storeActiveUserName() : List<String> {
 
-    return users.filter { user -> user.active }.sortedBy { user -> user.id }.map { user -> user.name }
+    return users.filter { it.active }.sortedBy { it.id }.map { it.name }
     }
 }
 
